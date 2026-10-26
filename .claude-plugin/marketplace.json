@@ -1,0 +1,12 @@
+{
+  "name": "day-dream-studio",
+  "description": "Claude Code plugins by day-dream.studio",
+  "owner": { "name": "day-dream.studio" },
+  "plugins": [
+    {
+      "name": "carousel-studio",
+      "source": "./",
+      "description": "Branded 5-slide Instagram carousels from a topic, rendered locally with your brand's fonts"
+    }
+  ]
+}

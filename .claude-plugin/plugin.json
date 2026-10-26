@@ -1,0 +1,9 @@
+{
+  "name": "carousel-studio",
+  "displayName": "Carousel Studio",
+  "version": "1.0.0",
+  "description": "Turn a topic into a branded 5-slide Instagram carousel, rendered locally to 1080×1350 PNGs with your brand's fonts, plus caption and hashtags.",
+  "author": { "name": "day-dream.studio" },
+  "license": "MIT",
+  "keywords": ["instagram", "carousel", "social-media", "design", "branding"]
+}

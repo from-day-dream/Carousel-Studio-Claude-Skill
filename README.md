@@ -25,24 +25,39 @@ A [Claude Code](https://claude.com/claude-code) skill that turns a topic into a 
 
 ## Install
 
-Clone or copy this folder into a Claude Code skills directory:
+### As a plugin (recommended)
+
+In Claude Code:
+
+```
+/plugin marketplace add from-day-dream/Carousel-Studio-Claude-Skill
+/plugin install carousel-studio@day-dream-studio
+```
+
+Or from your shell: `claude plugin marketplace add from-day-dream/Carousel-Studio-Claude-Skill`, then `claude plugin install carousel-studio@day-dream-studio`. Run `/reload-plugins` or start a new session to load it.
+
+As a plugin, the slash command is `/carousel-studio:carousel-studio <topic>`. Plain requests like "make a carousel about…" work too. Update with `/plugin marketplace update day-dream-studio`.
+
+### As a standalone skill
+
+Clone this repo into a Claude Code skills directory:
 
 ```bash
 # Personal: available in every project
-git clone <this-repo> ~/.claude/skills/carousel-studio
+git clone https://github.com/from-day-dream/Carousel-Studio-Claude-Skill.git ~/.claude/skills/carousel-studio
 
 # Or per project
-git clone <this-repo> .claude/skills/carousel-studio
+git clone https://github.com/from-day-dream/Carousel-Studio-Claude-Skill.git .claude/skills/carousel-studio
 ```
 
-Restart Claude Code (or open a new session) so it picks up the skill. Dependencies and Chromium install automatically the first time the skill runs. To do it yourself instead:
-
-```bash
-node ~/.claude/skills/carousel-studio/scripts/setup.mjs
-```
+Start a new Claude Code session so it picks up the skill. The slash command is `/carousel-studio <topic>`.
 
 > **Windows:** if you keep the repo somewhere else, link it with a directory junction instead of a symlink (no admin rights needed):
 > `mklink /J .claude\skills\carousel-studio C:\path\to\carousel-studio`
+
+### Dependencies
+
+npm packages and Playwright's Chromium install automatically the first time the skill runs (about a minute). To do it yourself, run `node <skill folder>/scripts/setup.mjs`. With the plugin, the npm packages reinstall after each plugin update, because updates replace the plugin folder. Chromium is shared and stays installed.
 
 ## First run
 
@@ -150,6 +165,7 @@ Everything runs locally. Your brand kit, fonts, slides and gallery never leave y
 | Path | Purpose |
 |---|---|
 | `SKILL.md` | Entry point and workflow router |
+| `.claude-plugin/` | Plugin manifest and marketplace listing |
 | `references/` | Retention framework, design principles, HTML contract, critique rubric, brand setup, layout extraction, image prompting, layered images |
 | `scripts/render.mjs` | HTML → PNG, layout and retention report, contact sheet, specimen |
 | `scripts/image.mjs` | fal / Atlas / OpenAI image generation, crop, sidecar metadata |
