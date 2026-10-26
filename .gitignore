@@ -1,0 +1,33 @@
+# Dependencies (installed by scripts/setup.mjs on first run)
+node_modules/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# User workspace, if the skill is run from inside this folder
+carousel-studio/
+
+# Render/runtime artefacts
+**/.render-*.html
+**/.specimen.html
+**/render-report.json
+examples/brand-demo/specimen.png
+examples/brand-demo/test/
+examples/brand-demo/tests/*.png
+examples/brand-demo/tests/*.report.json
+examples/brand-demo/layouts/*/sample.*
+
+# Logs and temp files
+npm-debug.log*
+*.log
+*.tmp
+
+# Editors and OS
+.claude/settings.local.json
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

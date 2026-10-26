@@ -1,0 +1,25 @@
+<!doctype html>
+<!-- Deliberately broken hook slide. Every check in scripts/render.mjs should fire on it:
+     overflow, safe-area, budget (headline, support, slide total), emphasis, list size,
+     missing swipe cue, contrast, raw hex, min font size. -->
+<html><head><meta charset="utf-8">
+<style>
+{{FONT_FACES}}
+{{TOKENS}}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--brand-paper);color:var(--brand-ink);padding:40px}
+h1{font-family:var(--brand-font-heading);font-weight:600;font-size:var(--brand-size-hook);line-height:1.05;margin:0}
+.key{font-family:var(--brand-font-body);font-size:var(--brand-size-key);margin:32px 0 0}
+.box{height:80px;overflow:hidden;font-family:var(--brand-font-body);font-size:var(--brand-size-support);color:#d8d2c6;margin-top:24px}
+li{font-family:var(--brand-font-body);font-size:22px}
+</style></head>
+<body>
+<div class="slide" data-slide="1">
+  <h1 data-text="headline">Ten <em>powerful</em> morning <strong>habits</strong> every busy founder needs to know</h1>
+  <p class="key" data-text="key">This line is fine on its own.</p>
+  <div class="box" data-text="support">This support paragraph is far too long for a carousel slide and it keeps going well past the twenty-five word budget so the reader gives up halfway through it.</div>
+  <ul>
+    <li data-text="item">One</li><li data-text="item">Two</li><li data-text="item">Three</li>
+    <li data-text="item">Four</li><li data-text="item">Five</li>
+  </ul>
+</div>
+</body></html>

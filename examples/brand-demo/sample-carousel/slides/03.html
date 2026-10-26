@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+{{FONT_FACES}}
+{{TOKENS}}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--brand-ink);color:var(--brand-paper)}
+.top{position:absolute;top:96px;left:96px;right:96px;display:flex;justify-content:space-between;
+  font-family:var(--brand-font-body);font-size:var(--brand-size-meta);letter-spacing:.12em;text-transform:uppercase;color:var(--brand-grid)}
+.main{position:absolute;left:96px;right:96px;top:324px}
+.kicker{font-family:var(--brand-font-body);font-weight:600;font-size:var(--brand-size-meta);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-accent-on-ink);margin:0 0 32px}
+h2{margin:0;text-wrap:balance;font-family:var(--brand-font-heading);font-weight:600;font-size:var(--brand-size-headline);line-height:1;letter-spacing:-.02em}
+h2 em{font-style:italic;color:var(--brand-accent-on-ink)}
+.key{text-wrap:pretty;margin:48px 0 0;max-width:800px;font-family:var(--brand-font-body);font-size:var(--brand-size-key);line-height:1.3}
+ul{list-style:none;margin:72px 0 0;padding:0}
+li{display:flex;gap:28px;align-items:baseline;padding:22px 0;border-top:1px solid var(--brand-muted);font-family:var(--brand-font-body);font-weight:600;font-size:var(--brand-size-item)}
+li::before{content:"→";color:var(--brand-accent-on-ink);font-weight:400}
+.teaser{position:absolute;left:96px;bottom:96px;font-family:var(--brand-font-body);font-size:var(--brand-size-meta);letter-spacing:.12em;text-transform:uppercase;color:var(--brand-grid)}
+</style></head>
+<body>
+<div class="slide" data-slide="3">
+  <div class="top"><span data-text="meta">@quietdesk.demo</span><span data-text="meta">03 / 05</span></div>
+  <div class="main">
+    <p class="kicker" data-text="meta">Mistake 2</p>
+    <h2 data-text="headline">Starting with the <em>easy</em> task</h2>
+    <p class="key" data-text="key">Quick wins feel productive but spend your sharpest hours on shallow work.</p>
+    <ul>
+      <li data-text="item">Name one hard task tonight</li>
+      <li data-text="item">Open it before anything else</li>
+      <li data-text="item">Stop mid-sentence, not mid-slump</li>
+    </ul>
+  </div>
+  <div class="teaser" data-text="meta">One habit left →</div>
+</div>
+</body></html>

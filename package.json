@@ -1,0 +1,20 @@
+{
+  "name": "carousel-studio",
+  "version": "0.1.0",
+  "description": "Claude Code skill: turn a topic into a branded 5-slide Instagram carousel.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "render": "node scripts/render.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "playwright": "^1.48.0",
+    "sharp": "^0.35.5"
+  }
+}

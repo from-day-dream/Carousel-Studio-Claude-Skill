@@ -1,0 +1,24 @@
+<!doctype html>
+<!-- Starter slide. See references/html-rules.md for the full contract.
+     {{FONT_FACES}} and {{TOKENS}} are filled by scripts/render.mjs; {{LOGO}} / {{LOGO_ALT}} become the brand logo. -->
+<html><head><meta charset="utf-8">
+<style>
+{{FONT_FACES}}
+{{TOKENS}}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--brand-background);color:var(--brand-text)}
+.top{position:absolute;top:var(--brand-space-margin);left:var(--brand-space-margin);right:var(--brand-space-margin);
+  display:flex;justify-content:space-between;font-family:var(--brand-font-body);font-size:var(--brand-size-meta)}
+.main{position:absolute;left:var(--brand-space-margin);right:var(--brand-space-margin);top:360px}
+h2{margin:0;text-wrap:balance;font-family:var(--brand-font-heading);font-size:var(--brand-size-headline);line-height:1.05}
+h2 em{font-style:italic;color:var(--brand-accent)}
+.key{text-wrap:pretty;margin:48px 0 0;font-family:var(--brand-font-body);font-size:var(--brand-size-key);line-height:1.3}
+</style></head>
+<body>
+<div class="slide" data-slide="2">
+  <div class="top"><span data-text="meta">@handle</span><span data-text="meta">02 / 05</span></div>
+  <div class="main">
+    <h2 data-text="headline">One idea, <em>clearly</em> stated</h2>
+    <p class="key" data-text="key">The single sentence that carries this slide's point.</p>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,10 @@
+{
+  "enabled": false,
+  "provider": "fal",
+  "model": "gpt-image-2.5",
+  "styleAnchor": "Natural film photograph, soft morning window light, warm paper beige and ink brown palette with one terracotta accent, fine grain, calm and uncluttered.",
+  "lora": {
+    "url": null,
+    "scale": 1
+  }
+}
