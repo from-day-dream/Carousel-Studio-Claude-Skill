@@ -11,7 +11,7 @@ This sits **above** the brand's design language. The brand decides how a slide *
 - A **swipe cue** pulls the eye to the next slide: a line or arrow running off the right edge, a counter, a cropped element, "Swipe for…". Styled in the brand language. Tagged `data-cue="swipe"`.
 - Slide 1 total: **≤ 35 words** including everything except meta (handle/counter).
 
-## 2. One slide = one idea (slides 2–4)
+## 2. One slide = one idea (body slides 2…N−1)
 - Each slide delivers **one** clear idea. If you need "and" to state it, split it or cut it.
 - One main point, strong hierarchy, plenty of empty space.
 - Scannable in about **2 seconds**.
@@ -39,22 +39,26 @@ Rules:
 
 ## 5. Progression and flow
 - Before any HTML, write the **narrative spine**: one line per slide, hook promise → point → point → payoff → follow. Each line answers "why swipe next?"
-- Use a transition device on slides 1–4: a numbered sequence (1/3, 2/3…), a running visual motif, a question answered on the next slide, or a teaser line at the bottom ("But silence alone isn't enough →").
+- Use a transition device on every slide except the CTA: a numbered sequence (1/3, 2/3…), a running visual motif, a question answered on the next slide, or a teaser line at the bottom ("But silence alone isn't enough →").
 - Keep the system identical across slides: same margins, same counter/handle position, same marker style. Vary composition (type-led vs inverse vs visual-led) only within that system.
 
 ## 6. Frameworks
 Pick one in the strategy step and record it in `meta.json` as `framework`. If the user names one, use it; otherwise choose and say which.
 
-| Framework | Slide pattern (5 slides) |
-|---|---|
-| Listicle | Hook (number + promise) → item 1 → item 2 → item 3 → follow |
-| Mistakes to avoid | Hook (the cost of the mistake) → mistake 1 + fix → mistake 2 + fix → mistake 3 + fix → follow |
-| Problem → solution | Hook (the pain) → why it happens → the fix → the result → follow |
-| Myth vs. fact | Hook (the contrarian claim) → myth 1 busted → myth 2 busted → myth 3 busted → follow |
-| Step-by-step | Hook (the outcome) → step 1 → step 2 → step 3 → follow |
-| Before / after | Hook (the transformation) → before → what changed → after → follow |
+The patterns below are for the default 5 slides (3 body slides). For N slides there are N−2 body slides:
 
-Slide 5 is always the follow/CTA slide: logo, handle, the brand's closing CTA text. Calm and minimal.
+| Framework | Slide pattern (5 slides) | Scaling to N |
+|---|---|---|
+| Listicle | Hook (number + promise) → item 1 → item 2 → item 3 → follow | One item per body slide; the hook's number = N−2 |
+| Mistakes to avoid | Hook (the cost of the mistake) → mistake 1 + fix → mistake 2 + fix → mistake 3 + fix → follow | One mistake + fix per body slide |
+| Problem → solution | Hook (the pain) → why it happens → the fix → the result → follow | Split "why" into causes and "the fix" into steps; keep the result just before the CTA |
+| Myth vs. fact | Hook (the contrarian claim) → myth 1 busted → myth 2 busted → myth 3 busted → follow | One myth per body slide |
+| Step-by-step | Hook (the outcome) → step 1 → step 2 → step 3 → follow | One step per body slide |
+| Before / after | Hook (the transformation) → before → what changed → after → follow | Expand "what changed" into one change per slide |
+
+From about 8 slides up, add a **recap** slide just before the CTA (the body points as a short list) and consider a mid-carousel "turning point" slide (the inverse/loud one) to re-hook readers. Never pad: if the topic genuinely doesn't have N−2 distinct ideas, say so and propose a smaller N rather than splitting one idea across slides.
+
+The last slide (N) is always the follow/CTA slide: logo, handle, the brand's closing CTA text. Calm and minimal.
 
 ## 7. Text budgets (enforced by the render script)
 

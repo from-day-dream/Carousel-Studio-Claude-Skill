@@ -6,7 +6,7 @@
     {
       "name": "carousel-studio",
       "source": "./",
-      "description": "Branded 5-slide Instagram carousels from a topic, rendered locally with your brand's fonts"
+      "description": "Branded Instagram carousels (5–20 slides) from a topic, rendered locally with your brand's fonts"
     }
   ]
 }

@@ -332,11 +332,13 @@ async function renderSlide(page, srcFile, outPng, role, ctx) {
   }
 }
 
+// Rows of up to 5 tiles, so long carousels (up to 20 slides) stay viewable.
 async function contactSheet(pngs, out) {
-  const w = 270, h = 338, gap = 16;
+  const w = 270, h = 338, gap = 16, perRow = 5;
   const tiles = await Promise.all(pngs.map(p => sharp(p).resize(w, h).toBuffer()));
-  await sharp({ create: { width: gap + tiles.length * (w + gap), height: h + gap * 2, channels: 3, background: '#111111' } })
-    .composite(tiles.map((input, i) => ({ input, left: gap + i * (w + gap), top: gap })))
+  const cols = Math.min(tiles.length, perRow), rows = Math.ceil(tiles.length / perRow);
+  await sharp({ create: { width: gap + cols * (w + gap), height: gap + rows * (h + gap), channels: 3, background: '#111111' } })
+    .composite(tiles.map((input, i) => ({ input, left: gap + (i % perRow) * (w + gap), top: gap + Math.floor(i / perRow) * (h + gap) })))
     .png().toFile(out);
 }
 
@@ -360,6 +362,9 @@ function context(brandDir) {
   return { brandDir, tokens, faces, fontCSS: fontFaceCSS(faces), tokenCSS: tokenCSS(tokens), logos: logoURIs(tokens, brandDir) };
 }
 
+// Carousels default to 5 slides (set by the skill) and may have up to MAX_SLIDES.
+const MAX_SLIDES = 20;
+
 // Slide 01 is the hook; the last slide (05 by default) is the CTA.
 const roleFor = (name, last = 5) => {
   const n = parseInt(name, 10);
@@ -373,6 +378,7 @@ async function renderCarousel(dir) {
   if (!fs.existsSync(slidesDir)) fail(`no slides/ folder in ${dir}`, 2);
   const all = fs.readdirSync(slidesDir).filter(f => /^\d+\.html$/.test(f)).sort();
   if (!all.length) fail(`no NN.html slides in ${slidesDir}`, 2);
+  if (all.length > MAX_SLIDES) fail(`${all.length} slides in ${slidesDir}; the maximum is ${MAX_SLIDES}`, 2);
   const only = args.slide ? String(args.slide).padStart(2, '0') : null;
   const todo = only ? all.filter(f => f.startsWith(only)) : all;
   if (only && !todo.length) fail(`slide ${only} not found in ${slidesDir}`, 2);

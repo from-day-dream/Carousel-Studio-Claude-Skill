@@ -36,7 +36,7 @@ Turn a reference post into a reusable, **brand-adapted** layout spec once, at se
 | key line | | |
 | support / list | | |
 | image / visual | | |
-| logo | | slide 5 only unless the reference shows otherwise |
+| logo | | CTA (last) slide only unless the reference shows otherwise |
 
 ## Type scale
 - Headline : key line ratio ≈ __ : 1. Headline lines: __–__. Key line max width __px.

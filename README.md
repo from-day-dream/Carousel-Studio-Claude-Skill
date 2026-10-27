@@ -1,6 +1,6 @@
 # Carousel Studio
 
-A [Claude Code](https://claude.com/claude-code) skill that turns a topic into a branded 5-slide Instagram carousel: strategy, copy, design, caption and hashtags, rendered to 1080×1350 PNGs with your brand's exact fonts.
+A [Claude Code](https://claude.com/claude-code) skill that turns a topic into a branded Instagram carousel (5 slides by default, or any number up to 20 — just ask for "a 10-slide carousel on…"): strategy, copy, design, caption and hashtags, rendered to 1080×1350 PNGs with your brand's exact fonts.
 
 ![A 5-slide carousel made with Carousel Studio: "Creative vision beats AI"](docs/contact-sheet.png)
 
@@ -144,7 +144,7 @@ Open http://localhost:4173. Claude rebuilds the index after every carousel. A se
 
 ![Gallery](docs/gallery.png)
 
-Each card has the five slides, chips for Context, Positioning, Ideas and Caption (with copy buttons), and **Download all** (PNGs + caption as a zip). Click a slide for a lightbox with its copy, layout, design notes and image prompt. Arrow keys and Esc work.
+Each card has the carousel's slides, chips for Context, Positioning, Ideas and Caption (with copy buttons), and **Download all** (PNGs + caption as a zip). Click a slide for a lightbox with its copy, layout, design notes and image prompt. Arrow keys and Esc work.
 
 ![Lightbox](docs/gallery-lightbox.png)
 

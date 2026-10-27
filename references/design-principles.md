@@ -13,10 +13,10 @@ Art direction layered on top of the retention framework. The brand's `design-lan
 - Sizes come from the type scale tokens. Don't invent in-between sizes slide by slide.
 
 ## Rhythm across the carousel
-- Alternate compositions: e.g. type stack → panel → inverse list → visual-led → centred CTA. Never five identical compositions.
+- Alternate compositions: e.g. type stack → panel → inverse list → visual-led → centred CTA. Never all-identical compositions. On long carousels (8+) a repeating cycle of 3–4 compositions is fine and helps the series read as one.
 - One inverse (dark) or otherwise "loud" slide per carousel is usually enough; it marks the turning point or the densest idea.
 - Keep the *system* fixed (margins, counter, handle, markers, type families) while the *composition* varies. Variation without a system looks random; a system without variation looks templated.
-- Check rhythm on the contact sheet: squint at the 5 thumbnails. You should see a pattern, not a repeat.
+- Check rhythm on the contact sheet: squint at the thumbnails. You should see a pattern, not a repeat.
 
 ## Image / type balance (when a slide has a visual)
 - The visual carries the idea or it goes. Decoration competes with the headline.
@@ -36,7 +36,7 @@ Art direction layered on top of the retention framework. The brand's `design-lan
 - Gradients the brand didn't ask for.
 - Every word bold, or several accent colours fighting.
 - Headline, body and list all within ~1.5× of each other in size.
-- Five slides with the same composition and only the words changed.
+- Every slide with the same composition and only the words changed.
 - Stock-photo backgrounds with text slapped on top and no scrim.
 
 ## When output still looks templated

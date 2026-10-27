@@ -3,7 +3,7 @@
 `scripts/render.mjs` depends on this contract. Break it and the render report will flag the slide.
 
 ## File
-- One standalone HTML file per slide: `slides/01.html` … `slides/05.html`. Rendered at exactly **1080×1350**, deviceScaleFactor 1.
+- One standalone HTML file per slide: `slides/01.html` … `slides/NN.html` (N = `slideCount`, 5 by default, max 20; two-digit names, contiguous, the highest number is the CTA). Rendered at exactly **1080×1350**, deviceScaleFactor 1.
 - `<head>` has one `<style>` block that starts with the two placeholders, then your slide CSS:
   ```html
   <style>
@@ -50,7 +50,8 @@
 - Over images: a scrim (gradient from a token colour), a solid panel, or text placed in the image's reserved empty area. Contrast is measured against the actual rendered pixels behind each text element.
 - Repeating elements (counter, handle, mark, teaser line) sit at **identical** coordinates on every slide. Copy the CSS for them verbatim between slides.
 
-## Slide 5 (CTA)
+## Last slide (CTA)
+The counter on every slide uses the real total (`03 / 07`, `12 / 20`).
 Logo, handle and the closing CTA text from `brand.md`. Calm and minimal: one headline, one support line at most, lots of space. It still has one `headline`.
 
 ## Minimal example

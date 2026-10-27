@@ -14,7 +14,7 @@ Creates `<ws>/brands/<slug>/` from `templates/brand/` and sets it active in `<ws
 Name, handle, website. Then: what the brand does and for whom (positioning), who reads the posts (audience). If they give a site/Instagram link, read it and propose positioning + audience for them to correct.
 
 ## 2. Voice (batch 2) → `brand.md`
-3–5 voice traits, each with a do/don't example line. Words to use and to avoid. The exact closing CTA text for slide 5 (default: "Follow @handle for more <topic>").
+3–5 voice traits, each with a do/don't example line. Words to use and to avoid. The exact closing CTA text for the last slide (default: "Follow @handle for more <topic>").
 
 ## 3. Fonts → `tokens.json` + `fonts/`
 For each role (`heading`, `body`, optional `accent`):
