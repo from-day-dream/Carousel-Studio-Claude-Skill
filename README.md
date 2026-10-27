@@ -2,7 +2,15 @@
 
 A [Claude Code](https://claude.com/claude-code) skill that turns a topic into a branded Instagram carousel (5 slides by default, or any number up to 20 — just ask for "a 10-slide carousel on…"): strategy, copy, design, caption and hashtags, rendered to 1080×1350 PNGs with your brand's exact fonts.
 
-![A 5-slide carousel made with Carousel Studio: "Creative vision beats AI"](docs/contact-sheet.png)
+<p>
+  <img src="docs/example/01.png" width="19%" alt="Slide 1: Creative vision beats AI every single time">
+  <img src="docs/example/02.png" width="19%" alt="Slide 2: On its own, AI makes average.">
+  <img src="docs/example/03.png" width="19%" alt="Slide 3: AI slop is easy to spot.">
+  <img src="docs/example/04.png" width="19%" alt="Slide 4: Directing AI is still a craft.">
+  <img src="docs/example/05.png" width="19%" alt="Slide 5: Hire the vision. Let the model render.">
+</p>
+
+<sub>A 5-slide carousel made with Carousel Studio: "Creative vision beats AI every single time" (Problem → solution, images via GPT Image 2.5).</sub>
 
 - **Runs on your Claude plan.** No Anthropic API key, no backend, no hosted app.
 - **Claude designs every slide as HTML.** A local Playwright script renders it with your real font files and checks overflow, safe area, text budgets, hierarchy and contrast before you see it.
