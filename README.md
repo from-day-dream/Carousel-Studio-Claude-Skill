@@ -1,6 +1,8 @@
 # Carousel Studio
 
-A [Claude Code](https://claude.com/claude-code) skill that turns a topic into a branded Instagram carousel (5 slides by default, or any number up to 20 — just ask for "a 10-slide carousel on…"): strategy, copy, design, caption and hashtags, rendered to 1080×1350 PNGs (plus a PDF of each slide) with your brand's exact fonts.
+A [Claude Code](https://claude.com/claude-code) skill that turns a topic into a branded carousel for Instagram or LinkedIn (5 slides by default, or any number up to 20 — just ask for "a 10-slide carousel on…"): strategy, copy, design, caption and hashtags, rendered to 1080×1350 PNGs (plus a PDF of each slide) with your brand's exact fonts.
+
+The 1080×1350 (4:5 portrait) size is the full-height format on both platforms, so the same slides can be posted to either: as an Instagram carousel, or as a LinkedIn image post (up to 20 images).
 
 <p>
   <img src="docs/example/01.png" width="19%" alt="Slide 1: Creative vision beats AI every single time">
