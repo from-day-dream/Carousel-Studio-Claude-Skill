@@ -18,7 +18,7 @@ const require = createRequire(path.join(SKILL_DIR, 'package.json'));
 
 function status() {
   const nodeMajor = Number(process.versions.node.split('.')[0]);
-  const deps = ['playwright', 'sharp', 'dotenv'].every(d => { try { require.resolve(d); return true; } catch { return false; } });
+  const deps = ['playwright', 'sharp', 'dotenv', 'pdf-lib'].every(d => { try { require.resolve(d); return true; } catch { return false; } });
   let chromium = false;
   if (deps) {
     try { chromium = fs.existsSync(require('playwright').chromium.executablePath()); } catch { /* not installed */ }

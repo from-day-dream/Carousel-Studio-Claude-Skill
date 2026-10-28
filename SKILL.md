@@ -6,7 +6,7 @@ argument-hint: "<topic> [N slides] [framework] [layouts] | setup | add layout | 
 
 # Carousel Studio
 
-Turns a topic into a branded 1080×1350 carousel of **N slides: 5 by default, 3–20 if the user asks for a number** ("10 slides", "a 7-slide carousel"). You do the strategy and design every slide as HTML; local scripts render the PNGs (and a PDF of each slide beside them) with the brand's exact fonts and check layout and retention rules. Everything runs locally on the user's machine.
+Turns a topic into a branded 1080×1350 carousel of **N slides: 5 by default, 3–20 if the user asks for a number** ("10 slides", "a 7-slide carousel"). You do the strategy and design every slide as HTML; local scripts render the PNGs (plus a PDF of each slide and a combined `png/carousel.pdf` for LinkedIn document posts) with the brand's exact fonts and check layout and retention rules. Everything runs locally on the user's machine.
 
 **Paths.** `<skill>` = the base directory of this skill (where this file lives). `<ws>` = the workspace: `$CAROUSEL_STUDIO_HOME` if set, else `./carousel-studio` in the current project. Run scripts with `node <skill>/scripts/<name>.mjs` and always pass `--workspace <ws>` when `<ws>` isn't `./carousel-studio` relative to the current directory.
 

@@ -9,6 +9,7 @@
 // Exit codes: 0 = rendered, no errors; 1 = rendered, report has errors; 2 = fatal (fonts, missing files).
 import fs from 'node:fs';
 import path from 'node:path';
+import { PDFDocument } from 'pdf-lib';
 import {
   parseArgs, fail, readJSON, writeJSON, resolveWorkspace, resolveBrandDir,
 } from './lib/workspace.mjs';
@@ -66,6 +67,16 @@ const roleFor = (name, last = 5) => {
   return n === 1 ? 'hook' : n === last ? 'cta' : 'body';
 };
 
+// All slide PDFs, in order, as one document (LinkedIn document posts).
+async function combinePdfs(files, out) {
+  const doc = await PDFDocument.create();
+  for (const f of files) {
+    const src = await PDFDocument.load(fs.readFileSync(f));
+    for (const p of await doc.copyPages(src, src.getPageIndices())) doc.addPage(p);
+  }
+  fs.writeFileSync(out, await doc.save());
+}
+
 // ---------- modes ----------
 
 async function renderCarousel(dir) {
@@ -100,15 +111,18 @@ async function renderCarousel(dir) {
   }
   const pngs = all.map(f => path.join(dir, 'png', f.replace('.html', '.png'))).filter(p => fs.existsSync(p));
   await contactSheet(pngs, path.join(dir, 'contact-sheet.png'));
+  const pdfs = all.map(f => path.join(dir, 'png', f.replace('.html', '.pdf'))).filter(p => fs.existsSync(p));
+  const combined = path.join(dir, 'png', 'carousel.pdf');
+  await combinePdfs(pdfs, combined);
   const rel = p => p && path.relative(dir, p).replace(/\\/g, '/');
   const strip = s => ({ ...s, png: rel(s.png), pdf: rel(s.pdf) });
   writeJSON(reportFile, {
-    renderedAt: new Date().toISOString(), brand: path.basename(ctx.brandDir),
+    renderedAt: new Date().toISOString(), brand: path.basename(ctx.brandDir), pdf: rel(combined),
     summary: { errors: slides.reduce((n, s) => n + s.errors.length, 0), warnings: slides.reduce((n, s) => n + s.warnings.length, 0) },
     slides: slides.map(strip),
   });
   console.log(`Rendered ${results.length} slide(s) → ${path.join(dir, 'png')} (PNG + PDF)\n`);
-  const errs = printReport(only ? results : slides, `\nReport: ${reportFile}\nContact sheet: ${path.join(dir, 'contact-sheet.png')}`);
+  const errs = printReport(only ? results : slides, `\nReport: ${reportFile}\nContact sheet: ${path.join(dir, 'contact-sheet.png')}\nCombined PDF: ${combined} (${pdfs.length} pages)`);
   process.exit(errs ? 1 : 0);
 }
 

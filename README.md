@@ -1,8 +1,8 @@
 # Carousel Studio
 
-A [Claude Code](https://claude.com/claude-code) skill that turns a topic into a branded carousel for Instagram or LinkedIn (5 slides by default, or any number up to 20 — just ask for "a 10-slide carousel on…"): strategy, copy, design, caption and hashtags, rendered to 1080×1350 PNGs (plus a PDF of each slide) with your brand's exact fonts.
+A [Claude Code](https://claude.com/claude-code) skill that turns a topic into a branded carousel for Instagram or LinkedIn (5 slides by default, or any number up to 20 — just ask for "a 10-slide carousel on…"): strategy, copy, design, caption and hashtags, rendered to 1080×1350 PNGs, a PDF of each slide and one combined `carousel.pdf`, all with your brand's exact fonts.
 
-The 1080×1350 (4:5 portrait) size is the full-height format on both platforms, so the same slides can be posted to either: as an Instagram carousel, or as a LinkedIn image post (up to 20 images).
+The 1080×1350 (4:5 portrait) size is the full-height format on both platforms, so the same slides can be posted to either: as an Instagram carousel, or on LinkedIn as an image post (up to 20 images) or a document post (upload `carousel.pdf`).
 
 <p>
   <img src="docs/example/01.png" width="19%" alt="Slide 1: Creative vision beats AI every single time">
@@ -94,7 +94,7 @@ carousel-studio/
 ├── providers.json           your model overrides (optional)
 ├── brands/<slug>/           brand.md, tokens.json, design-language.md, images.json,
 │                            fonts/, logo/, layouts/, style-refs/
-├── output/<date>-<topic>/   slides/*.html, png/*.png + *.pdf, images/, contact-sheet.png,
+├── output/<date>-<topic>/   slides/*.html, png/*.png + *.pdf + carousel.pdf, images/, contact-sheet.png,
 │                            meta.json, caption.txt, render-report.json
 ├── gallery.html
 └── index.json
@@ -178,7 +178,7 @@ Everything runs locally. Your brand kit, fonts, slides and gallery never leave y
 | `SKILL.md` | Entry point and workflow router |
 | `.claude-plugin/` | Plugin manifest and marketplace listing |
 | `references/` | Retention framework, design principles, HTML contract, critique rubric, brand setup, layout extraction, image prompting, layered images |
-| `scripts/render.mjs` | HTML → PNG + one-page PDF per slide, layout and retention report, contact sheet, specimen |
+| `scripts/render.mjs` | HTML → PNG + one-page PDF per slide + combined `carousel.pdf`, layout and retention report, contact sheet, specimen |
 | `scripts/image.mjs` | fal / Atlas / OpenAI image generation, crop, sidecar metadata |
 | `scripts/gallery.mjs` | Gallery index and local server |
 | `scripts/fonts.mjs` | Download Google Fonts into a brand |
