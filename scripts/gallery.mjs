@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 // Rebuild <workspace>/index.json from output/*/ and refresh <workspace>/gallery.html.
+// The viewer also shows slide-motion videos from <workspace>/motion/index.json when present.
 //
 //   node gallery.mjs [--workspace <path>]                 rebuild index + viewer
 //   node gallery.mjs --serve [--port 4173] [--workspace]  rebuild, then serve the workspace on localhost
 import fs from 'node:fs';
 import path from 'node:path';
-import http from 'node:http';
 import { SKILL_DIR, parseArgs, fail, readJSON, writeJSON, resolveWorkspace } from './lib/workspace.mjs';
+import { serve } from './lib/serve.mjs';
 
 const args = parseArgs();
 const ws = resolveWorkspace(args);
@@ -61,18 +62,4 @@ writeJSON(path.join(ws, 'index.json'), { generatedAt: new Date().toISOString(), 
 fs.copyFileSync(path.join(SKILL_DIR, 'templates', 'gallery.html'), path.join(ws, 'gallery.html'));
 console.log(`Indexed ${items.length} carousel(s) → ${path.join(ws, 'index.json')}`);
 
-if (args.serve) {
-  const port = Number(args.port) || 4173;
-  const types = { '.html': 'text/html; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.txt': 'text/plain; charset=utf-8' };
-  http.createServer((req, res) => {
-    const urlPath = decodeURIComponent(new URL(req.url, 'http://x').pathname);
-    const file = path.resolve(ws, '.' + (urlPath === '/' ? '/gallery.html' : urlPath));
-    // Serve only files inside the workspace, never .env or dotfiles.
-    if (!file.startsWith(path.resolve(ws) + path.sep) || /(^|[\\/])\./.test(path.relative(ws, file)) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
-      res.writeHead(404); return res.end('Not found');
-    }
-    res.writeHead(200, { 'Content-Type': types[path.extname(file).toLowerCase()] || 'application/octet-stream', 'Cache-Control': 'no-cache' });
-    fs.createReadStream(file).pipe(res);
-  }).listen(port, '127.0.0.1', () => console.log(`Gallery: http://localhost:${port}/  (Ctrl+C to stop)`))
-    .on('error', e => fail(e.code === 'EADDRINUSE' ? `port ${port} is in use - try --port ${port + 1}` : e.message));
-}
+if (args.serve) serve(ws, Number(args.port) || 4173);

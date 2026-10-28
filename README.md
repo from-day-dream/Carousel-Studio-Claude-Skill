@@ -1,6 +1,6 @@
 # Carousel Studio
 
-A [Claude Code](https://claude.com/claude-code) skill that turns a topic into a branded Instagram carousel (5 slides by default, or any number up to 20 — just ask for "a 10-slide carousel on…"): strategy, copy, design, caption and hashtags, rendered to 1080×1350 PNGs with your brand's exact fonts.
+A [Claude Code](https://claude.com/claude-code) skill that turns a topic into a branded Instagram carousel (5 slides by default, or any number up to 20 — just ask for "a 10-slide carousel on…"): strategy, copy, design, caption and hashtags, rendered to 1080×1350 PNGs (plus a PDF of each slide) with your brand's exact fonts.
 
 <p>
   <img src="docs/example/01.png" width="19%" alt="Slide 1: Creative vision beats AI every single time">
@@ -17,6 +17,7 @@ A [Claude Code](https://claude.com/claude-code) skill that turns a topic into a 
 - **Built for retention.** A clear hook, one idea per slide, a fixed reading order and a reason to swipe on every slide, checked on every carousel.
 - **Images are optional.** GPT Image 2.5 through [fal](https://fal.ai), [Atlas Cloud](https://www.atlascloud.ai) or the [OpenAI API](https://platform.openai.com), or FLUX / FLUX-LoRA on fal. Off by default, so nothing costs money unless you turn it on.
 - **A local gallery** for browsing, copying captions and downloading past carousels.
+- **Motion companion.** The Slide Motion skill turns any carousel into a branded 9:16 video (or any ratio) with the same brand kit.
 
 ## How it works
 
@@ -91,7 +92,7 @@ carousel-studio/
 ├── providers.json           your model overrides (optional)
 ├── brands/<slug>/           brand.md, tokens.json, design-language.md, images.json,
 │                            fonts/, logo/, layouts/, style-refs/
-├── output/<date>-<topic>/   slides/*.html, png/*.png, images/, contact-sheet.png,
+├── output/<date>-<topic>/   slides/*.html, png/*.png + *.pdf, images/, contact-sheet.png,
 │                            meta.json, caption.txt, render-report.json
 ├── gallery.html
 └── index.json
@@ -152,7 +153,7 @@ Open http://localhost:4173. Claude rebuilds the index after every carousel. A se
 
 ![Gallery](docs/gallery.png)
 
-Each card has the carousel's slides, chips for Context, Positioning, Ideas and Caption (with copy buttons), and **Download all** (PNGs + caption as a zip). Click a slide for a lightbox with its copy, layout, design notes and image prompt. Arrow keys and Esc work.
+Each card has the carousel's slides, chips for Context, Positioning, Ideas and Caption (with copy buttons), and **Download all** (PNGs + caption as a zip). Click a slide for a lightbox with its copy, layout, design notes and image prompt. Arrow keys and Esc work. If you also use **Slide Motion**, its videos appear in a **Motion** tab.
 
 ![Lightbox](docs/gallery-lightbox.png)
 
@@ -175,11 +176,12 @@ Everything runs locally. Your brand kit, fonts, slides and gallery never leave y
 | `SKILL.md` | Entry point and workflow router |
 | `.claude-plugin/` | Plugin manifest and marketplace listing |
 | `references/` | Retention framework, design principles, HTML contract, critique rubric, brand setup, layout extraction, image prompting, layered images |
-| `scripts/render.mjs` | HTML → PNG, layout and retention report, contact sheet, specimen |
+| `scripts/render.mjs` | HTML → PNG + one-page PDF per slide, layout and retention report, contact sheet, specimen |
 | `scripts/image.mjs` | fal / Atlas / OpenAI image generation, crop, sidecar metadata |
 | `scripts/gallery.mjs` | Gallery index and local server |
 | `scripts/fonts.mjs` | Download Google Fonts into a brand |
 | `scripts/setup.mjs` | Dependency check/install, workspace and brand creation |
+| `scripts/lib/` | Workspace, render core and gallery server, shared verbatim with Slide Motion |
 | `config/providers.json` | Image model endpoints |
 | `templates/` | Empty brand kit, slide skeleton, gallery page |
 | `examples/brand-demo/` | Quiet Desk demo brand with a sample carousel |

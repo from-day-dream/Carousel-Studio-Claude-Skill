@@ -1,12 +1,14 @@
 #!/usr/bin/env node
-// Provider-agnostic image generation: fal, Atlas Cloud or the OpenAI API -> local 1080×1350 PNG + sidecar JSON.
+// Provider-agnostic image generation: fal, Atlas Cloud or the OpenAI API -> local 1080×1350 PNG + sidecar JSON
+// (another canvas with --size WxH, e.g. 1080x1920 for slide-motion).
+// Copied verbatim between carousel-studio and slide-motion - keep the two copies identical.
 // Models live in config/providers.json (deep-merged with <workspace>/providers.json).
 //
 // Usage:
 //   node image.mjs --check [--want on|off] [--provider fal|atlas|openai] [--model <key>] [--brand <slug>]
 //       Resolve whether images are on for this run (brand default, request, key). Prints JSON. No API calls.
 //   node image.mjs --prompt "<text>" --out <carousel>/images/02.png [--refs a.png,b.png] [--seed 7]
-//       [--provider fal|atlas|openai] [--model <key>] [--lora <url> --lora-scale 0.8] [--no-anchor] [--brand <slug>]
+//       [--provider fal|atlas|openai] [--model <key>] [--lora <url> --lora-scale 0.8] [--no-anchor] [--brand <slug>] [--size WxH]
 //   node image.mjs --pass1 "<base>" [--pass2 "<edit>"] [--pass3 "<edit>"] --out <png> [--from-pass N] [--refs …]
 //       Layered image (max 3 passes): base, then edits of the previous pass. See references/layered-images.md.
 //   node image.mjs --batch jobs.json [--provider …] [--model …] [--brand <slug>]
@@ -27,7 +29,9 @@ import {
 const args = parseArgs();
 const ws = resolveWorkspace(args);
 dotenv.config({ path: path.join(ws, '.env'), quiet: true });
-const W = 1080, H = 1350;
+// Output canvas: 1080×1350 slides by default; --size WxH for other canvases (slide-motion video frames).
+const [W, H] = typeof args.size === 'string' ? args.size.split('x').map(Number) : [1080, 1350];
+if (!(W > 0 && H > 0)) fail('--size must look like 1080x1920', 2);
 const NO_TEXT = 'No text, no letters, no words, no numbers, no logos, no watermark, no signage.';
 
 // ---------- config ----------
@@ -59,7 +63,10 @@ function resolveModel(cfg) {
   const name = typeof args.model === 'string' ? args.model : (provider === cfg.provider && cfg.model) || p.defaultModel;
   const model = p.models?.[name];
   if (!model) return { provider, modelName: name, error: `model "${name}" is not configured for ${provider} (known: ${Object.keys(p.models || {}).join(', ')})` };
-  return { provider, p, modelName: name, model, keyEnv: p.keyEnv, key: process.env[p.keyEnv] };
+  // Landscape canvases ask the model for a landscape image (its configured size, turned).
+  const [mw, mh] = sizeWH(model.size);
+  const sized = W > H && mh > mw ? { ...model, size: `${mh}x${mw}` } : model;
+  return { provider, p, modelName: name, model: sized, keyEnv: p.keyEnv, key: process.env[p.keyEnv] };
 }
 
 // ---------- check mode (§9.1 decision A) ----------
@@ -247,7 +254,7 @@ async function callWithRetry(r, job) {
   throw lastErr;
 }
 
-// Centre-crop to 4:5 and resize to the slide canvas.
+// Centre-crop and resize to the canvas (4:5 slide unless --size says otherwise).
 async function cropToSlide(input, out) {
   fs.mkdirSync(path.dirname(out), { recursive: true });
   await sharp(input).resize(W, H, { fit: 'cover', position: 'centre' }).png().toFile(out);

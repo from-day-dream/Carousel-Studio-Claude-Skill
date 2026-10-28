@@ -1,4 +1,5 @@
 // Shared helpers: argument parsing, workspace/brand resolution, token loading.
+// Copied verbatim between carousel-studio and slide-motion (scripts/lib/) - keep the two copies identical.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

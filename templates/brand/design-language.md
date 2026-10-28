@@ -27,6 +27,10 @@
 ## Images
 - Treatment (full-bleed / framed / none), scrim, subject placement:
 
+## Motion
+<!-- Optional: used by Slide Motion for videos. Personality, how text enters and leaves (ease + duration),
+     transitions between scenes, what may move while text is being read. Leave empty for stills only. -->
+
 ## Do
 -
 

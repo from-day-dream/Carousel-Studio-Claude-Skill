@@ -6,7 +6,7 @@ argument-hint: "<topic> [N slides] [framework] [layouts] | setup | add layout | 
 
 # Carousel Studio
 
-Turns a topic into a branded 1080×1350 carousel of **N slides: 5 by default, 3–20 if the user asks for a number** ("10 slides", "a 7-slide carousel"). You do the strategy and design every slide as HTML; local scripts render the PNGs with the brand's exact fonts and check layout and retention rules. Everything runs locally on the user's machine.
+Turns a topic into a branded 1080×1350 carousel of **N slides: 5 by default, 3–20 if the user asks for a number** ("10 slides", "a 7-slide carousel"). You do the strategy and design every slide as HTML; local scripts render the PNGs (and a PDF of each slide beside them) with the brand's exact fonts and check layout and retention rules. Everything runs locally on the user's machine.
 
 **Paths.** `<skill>` = the base directory of this skill (where this file lives). `<ws>` = the workspace: `$CAROUSEL_STUDIO_HOME` if set, else `./carousel-studio` in the current project. Run scripts with `node <skill>/scripts/<name>.mjs` and always pass `--workspace <ws>` when `<ws>` isn't `./carousel-studio` relative to the current directory.
 
@@ -23,6 +23,7 @@ Turns a topic into a branded 1080×1350 carousel of **N slides: 5 by default, 3�
 | A carousel on a topic | **Generate** below |
 | Change part of an existing carousel | **Revise** below |
 | See past carousels | **Gallery** below |
+| A video / reel / animated version | Use the **slide-motion** skill if it's installed (same workspace and brand); otherwise say it isn't available |
 
 Multiple brands: `<ws>/config.json` → `activeBrand`. If the user names another brand, pass `--brand <slug>`; switch the active brand only if they ask.
 
@@ -91,7 +92,7 @@ Show a task list (TaskCreate or a checklist) with these steps and keep it curren
 - Show the changed slide PNG plus the updated contact sheet, then run `gallery.mjs` again.
 
 ## Gallery
-`node <skill>/scripts/gallery.mjs` rebuilds `<ws>/index.json` and `<ws>/gallery.html`. To browse, the user runs `node <skill>/scripts/gallery.mjs --serve` (built-in local server, default http://localhost:4173) and opens the address. Browsers block the index over `file://`, so a server is required. Give the user that one-line command with the real path filled in; offer to start it in the background. The gallery shows cards with thumbnails, Context/Positioning/Ideas/Caption chips with copy buttons, a lightbox (arrow keys, Esc) with slide details and image prompts, single-PNG download and a "Download all" zip.
+`node <skill>/scripts/gallery.mjs` rebuilds `<ws>/index.json` and `<ws>/gallery.html`. To browse, the user runs `node <skill>/scripts/gallery.mjs --serve` (built-in local server, default http://localhost:4173) and opens the address. Browsers block the index over `file://`, so a server is required. Give the user that one-line command with the real path filled in; offer to start it in the background. The gallery shows cards with thumbnails, Context/Positioning/Ideas/Caption chips with copy buttons, a lightbox (arrow keys, Esc) with slide details and image prompts, single-PNG download and a "Download all" zip. Videos made with slide-motion show up in its Motion tab.
 
 ## Rules that always apply
 - Text and logo are always HTML. Never put text in images, even with GPT Image.
